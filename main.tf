@@ -3,6 +3,7 @@ resource "aws_launch_template" "web_server_as" {
     image_id           = "ami-02457590d33d576c3"
     vpc_security_group_ids = [aws_security_group.web_server.id]
     instance_type = "t2.micro"
+    key_name = "lastone"
     tags = {
         Name = "DevOps"
     }
@@ -12,7 +13,7 @@ resource "aws_launch_template" "web_server_as" {
 
 
   resource "aws_elb" "web_server_lb"{
-     name = "web-server-lb"
+     name = "web-server-lb-${formatdate("YYYYMMDDHHmmss", timestamp())}"
      security_groups = [aws_security_group.web_server.id]
      subnets = ["subnet-024286466e258f339", "subnet-09558309acf4661a8"]
      listener {
