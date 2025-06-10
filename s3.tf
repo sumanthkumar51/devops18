@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "one" {
-  bucket = "demo490.k8s.local"
+  bucket = "demo490-k8s-local-${formatdate("YYYYMMDDHHmmss", timestamp())}"
 }
 
 resource "aws_s3_bucket_ownership_controls" "two" {
